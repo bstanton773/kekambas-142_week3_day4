@@ -60,3 +60,15 @@ class Blog:
             # Add the new post to the blog's list of posts
             self.posts.append(new_post)
             print(f"{new_post.title} has been created!")
+
+    # Method to view all of the posts in the blog
+    def view_posts(self):
+        # Check if there are any posts
+        if self.posts:
+            # Loop through the posts
+            for post in self.posts:
+                # Print the post (the __str__ method will format it for us)
+                print(post)
+        # If no posts
+        else:
+            print('There are currently no posts in this blog :( ')
