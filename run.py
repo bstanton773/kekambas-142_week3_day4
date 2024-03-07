@@ -67,6 +67,9 @@ def run_blog():
             elif to_do == '5':
                 # Call the edit_post method on the blog
                 blog.edit_post()
+            elif to_do == '6':
+                # Call the delete_post method on the blog
+                blog.delete_post()
             else:
                 print(f"Option {to_do} is coming soon!")
 
