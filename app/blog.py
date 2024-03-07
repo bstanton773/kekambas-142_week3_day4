@@ -6,6 +6,22 @@ class Blog:
         self.posts = []
         self.current_user = None
 
+    # Private method that will get a post by its ID or return None if no post with that ID
+    def __get_post_from_id(self):
+        # Ask the user for the ID of the post they would like to view
+        post_id = input('What is the ID of the post that you would like to get? ')
+        # Ensure that we can convert our post_id to an integer
+        while not post_id.isdigit():
+            post_id = input('Invalid ID. Must be an integer. Please enter ID again: ')
+        # Loop through all of the posts in the blog
+        for post in self.posts:
+            # If the post's ID matches the post_id argument
+            if post.id == int(post_id):
+                # Return that post instance
+                return post
+        # If we finish the loop, that means we did not find a post with that ID
+        print(f"Post with an ID of {post_id} does not exist") # 404 Not Found
+
     # Method to create a new user instance and add to the Blog's user list
     def create_new_user(self):
         # Get user info from input
@@ -72,3 +88,12 @@ class Blog:
         # If no posts
         else:
             print('There are currently no posts in this blog :( ')
+
+    # Method to view a single post by ID
+    def view_post(self):
+        # Get the post using the private method
+        post = self.__get_post_from_id()
+        # Check if the post exists
+        if post:
+            # If so, print that post
+            print(post)

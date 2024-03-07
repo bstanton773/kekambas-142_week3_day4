@@ -1,10 +1,23 @@
 from app import Blog
+from app.models import User, Post
 
 
 def run_blog():
     print('Welcome to the Kekambas Blog!')
     # Create an instance of the blog class
     blog = Blog()
+
+    # CREATE SOME INITIAL DATA
+    user1 = User('brians', 'abc123')
+    user2 = User('jumpman23', '6rings')
+    blog.users.append(user1)
+    blog.users.append(user2)
+    post1 = Post('Fri-yay!', 'It is Friday, hooray!', user1)
+    post2 = Post('Weekend', 'I am ready for the weekend', user2)
+    blog.posts.append(post1)
+    blog.posts.append(post2)
+
+
     # Start "running" our blog until user quits
     while True:
         if blog.current_user is None:
@@ -27,6 +40,9 @@ def run_blog():
             elif to_do == '3':
                 # Call the view_posts method on the blog
                 blog.view_posts()
+            elif to_do == '4':
+                # Call the view_post method on the blog
+                blog.view_post()
             else:
                 print(f"Option {to_do} is coming soon!")
         else:
@@ -45,6 +61,9 @@ def run_blog():
             elif to_do == '3':
                 # Call the view_posts method on the blog
                 blog.view_posts()
+            elif to_do == '4':
+                # Call the view_post method on the blog
+                blog.view_post()
             else:
                 print(f"Option {to_do} is coming soon!")
 
