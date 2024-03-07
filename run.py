@@ -64,6 +64,9 @@ def run_blog():
             elif to_do == '4':
                 # Call the view_post method on the blog
                 blog.view_post()
+            elif to_do == '5':
+                # Call the edit_post method on the blog
+                blog.edit_post()
             else:
                 print(f"Option {to_do} is coming soon!")
 

@@ -97,3 +97,32 @@ class Blog:
         if post:
             # If so, print that post
             print(post)
+
+    # Method to edit a post by ID
+    def edit_post(self):
+        post = self.__get_post_from_id()
+        if post:
+            # Check to see that the logged in user is the author of the post
+            if post.author == self.current_user:
+                # print the post so they can see what they are editing
+                print(post)
+
+                # Ask for the new title of the post or have them skip to keep the current title
+                new_title = input("Enter a new title or type 'skip' to keep the current title: ")
+                if new_title.lower() != 'skip':
+                    # Set the title attribute on the post to the new title
+                    post.title = new_title
+
+                # Ask for the new body of the post or have them skip to keep the current body
+                new_body = input("Enter a new body or type 'skip' to keep the current body: ")
+                if new_body.lower() != 'skip':
+                    # Set the body attribute on the post to the new body
+                    post.body = new_body
+
+                print(f"{post.title} has been updated!")
+            # If the user is logged in but not the author
+            elif self.current_user is not None:
+                print("You do not have permission to edit this post.") # 403 Forbidden
+            # If the user is not logged in at all
+            else:
+                print("You must be logged in to perform this action.") # 401 Unauthorized
