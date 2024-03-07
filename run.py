@@ -7,21 +7,32 @@ def run_blog():
     blog = Blog()
     # Start "running" our blog until user quits
     while True:
-        # Print the menu option
-        print("1. Sign Up\n2. Log In\n3. View All Posts\n4. View Single Post\n5. Quit")
-        # Ask the user what they would like to do
-        to_do = input('Which option would you like to do? ')
-        # Make sure they give a valid option
-        while to_do not in {'1', '2', '3', '4', '5'}:
-            to_do = input('Invalid option. Please enter 1, 2, 3, 4, or 5: ')
-        # Different "routes" - different options to take
-        if to_do == '5':
-            break
-        elif to_do == '1':
-            # Call the create_new_user method on the blog
-            blog.create_new_user()
+        if blog.current_user is None:
+            # Print the logged out menu option
+            print("1. Sign Up\n2. Log In\n3. View All Posts\n4. View Single Post\n5. Quit")
+            # Ask the user what they would like to do
+            to_do = input('Which option would you like to do? ')
+            # Make sure they give a valid option
+            while to_do not in {'1', '2', '3', '4', '5'}:
+                to_do = input('Invalid option. Please enter 1, 2, 3, 4, or 5: ')
+            # Different "routes" - different options to take
+            if to_do == '5':
+                break
+            elif to_do == '1':
+                # Call the create_new_user method on the blog
+                blog.create_new_user()
+            elif to_do == '2':
+                # Call the log_user_in method on the blog
+                blog.log_user_in()
+            else:
+                print(f"Option {to_do} is coming soon!")
         else:
-            print(f"Option {to_do} is coming soon!")
+            # Print the menu for logged in users
+            print("1. Sign Out")
+            to_do = input('Which option would you like to do? ')
+            if to_do == '1':
+                # Call the log_user_out method on the blog
+                blog.log_user_out()
     # Once the user quits and the while loop breaks
     print("Thank you for checking out the blog")
     print(blog.users)
